@@ -4,13 +4,14 @@
  * @Author: hjc<09497,13229482412>
  * @Date: 2024-02-22 09:35:04
  * @LastEditors: hjc<09497,13229482412>
- * @LastEditTime: 2024-02-28 15:03:16
+ * @LastEditTime: 2024-02-29 14:57:15
  * @FilePath: \test_drive\flutter_application_1\lib\main.dart
  */
 
 // 导入Material Ui组件库
 
 import 'package:flutter/material.dart';
+import './main01.dart';
 
 // 应用入口函数 负责创建和运行应用 runApp()函数调用
 // 创建MyApp常量对象 作为参数传递
@@ -34,7 +35,13 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // 首页
-      home: const MyHomePage(),
+      routes: {
+        '/': (context) => const MyHomePage(),
+        '/home': (context) => const MyHomePage(),
+        '/detail': (context) =>
+            const MyDetailPage(title: 'Flutter Demo Home Page ITry')
+      },
+      initialRoute: '/',
     );
   }
 }
@@ -73,7 +80,7 @@ class SearchBarWidget extends StatelessWidget {
                       children: [
                         Icon(Icons.search, color: Colors.white),
                         SizedBox(width: 8.0),
-                        Text('搜索一下',
+                        Text('搜索一下111',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,
@@ -155,12 +162,10 @@ class _ContentWidgetState extends State<ContentWidget>
         controller: _controller,
       ),
       // 高度填满剩余空间
-      Expanded(
-          child: TabBarView(
-        controller: _controller,
-        children:
-            tabStrList.map((e) => ContentListWidget(name: '$e title')).toList(),
-      ))
+      // Expanded(
+      //     child: TabBarView(controller: _controller, children: [
+      //   tabStrList.map((e) => ContentListWidget(name: '$e title')).toList(),
+      // ]))
     ])));
   }
 }
@@ -264,6 +269,12 @@ class BottomNavigationBarWidget extends StatefulWidget {
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int _selectedIndex = 0;
 
+  final Map<int, String> _routes = {
+    0: '/',
+    1: '/detail',
+    2: '/home',
+  };
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -276,6 +287,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         BottomNavigationBarItem(icon: Icon(Icons.person), label: '我的'),
       ],
       onTap: (position) {
+        Navigator.pushNamed(context, _routes[position]!);
         setState(() {
           _selectedIndex = position;
         });

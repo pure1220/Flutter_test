@@ -4,7 +4,7 @@
  * @Author: hjc<09497,13229482412>
  * @Date: 2024-02-22 09:35:04
  * @LastEditors: hjc<09497,13229482412>
- * @LastEditTime: 2024-02-27 17:38:53
+ * @LastEditTime: 2024-02-29 11:57:42
  * @FilePath: \test_drive\flutter_application_1\lib\main01.dart
  */
 
@@ -48,29 +48,29 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // 首页
-      home: const MyHomePage(title: 'Flutter Demo Home Page ITry'),
+      // home: const MyDetailPage(title: 'Flutter Demo Home Page ITry'),
     );
   }
 }
 
 // 动态的 在生命周期中持有状态，并根据状态更新UI
-class MyHomePage extends StatefulWidget {
+class MyDetailPage extends StatefulWidget {
   // 常量 意味在编译时 就能确定值
   // required 必须 this.title是必须的 如果缺失 会报错
-  const MyHomePage({super.key, required this.title});
+  const MyDetailPage({super.key, required this.title});
 
   //final 不可变的，将在类实例化的过程中被赋值，且生命周期中保持不变
   final String title;
 
   @override
   // 创建相关联的状态对象
-  State<MyHomePage> createState() => _MyHomePageState();
-  // State<MyHomePage> createState() => _MyHomePageState();
+  State<MyDetailPage> createState() => _MyDetailPageState();
+  // State<MyDetailPage> createState() => _MyDetailPageState();
 }
 
 // 关联的状态对象
 // 类名前的私有类 用下划线表示 不能在其他文件访问
-class _MyHomePageState extends State<MyHomePage> {
+class _MyDetailPageState extends State<MyDetailPage> {
   // 私有类
   int _counter = 0;
 
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _decrementCounter() {
     setState(() {
       _counter--;
-      _myname = 'i can not   do it';
+      _myname = 'i can not do it';
     });
   }
 
